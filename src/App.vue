@@ -1,38 +1,53 @@
 <template>
-  <div id="app">
+  <v-app>
     <header>
-      <span>Vue.js PWA</span>
+      <span>{{ title }} </span>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
+      <Wallet/>
     </main>
-  </div>
+  </v-app>
 </template>
-
-<script>
-export default {
-  name: 'app'
+ 
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+// Walletをimportする.
+import Wallet from './components/Wallet.vue'
+ 
+// コンポーネントの設定
+@Component({
+  name: 'app',
+  // Walletをcomponentとして定義する.
+  components: {
+    Wallet
+  }
+})
+ 
+// クラス
+export default class App extends Vue {
+  private title = 'My NEM wallet'
+  mounted () {}
 }
 </script>
-
+ 
 <style>
 body {
   margin: 0;
 }
-
+ 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
-
+ 
 main {
   text-align: center;
   margin-top: 40px;
 }
-
+ 
 header {
   margin: 0;
   height: 56px;
@@ -40,7 +55,7 @@ header {
   background-color: #35495E;
   color: #ffffff;
 }
-
+ 
 header span {
   display: block;
   position: relative;

@@ -2,6 +2,10 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
+
+    <h1>{{ title }}</h1>
+    <div v-html="message"> </div>
+
     <ul>
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
       <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
@@ -19,14 +23,33 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+import Component from 'vue-class-component'
+
+@Component({
   name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js PWA'
+  // propsは他のvueから値渡しされる時に使用する.
+  props: {
+    message: {
+      type: String,
+      default: 'default'
     }
   }
+})
+
+export default class Hello extends Vue {
+  private title = 'Hello class'
+  mounted () {
+    console.log('mounted Hello')
+  }
+
+  // name: 'hello',
+  // data () {
+  //   return {
+  //     msg: 'Welcome to Your Vue.js PWA'
+  //   }
+  // }
 }
 </script>
 
